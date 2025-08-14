@@ -224,7 +224,7 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains(version = "1.21.11")
+go_register_toolchains()
 
 _bazel_gazelle_version = "0.36.0"
 
