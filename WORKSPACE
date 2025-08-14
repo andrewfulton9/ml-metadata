@@ -177,6 +177,19 @@ local_python_configure(name = "local_config_python")
 # Google APIs protos                                                           #
 ################################################################################
 http_archive(
+    name = "com_github_grpc_grpc",
+    urls = ["https://github.com/grpc/grpc/archive/refs/tags/v1.64.2.tar.gz"],
+    sha256 = "c682fc39baefc6e804d735e6b48141157b7213602cc66dbe0bf375b904d8b5f9",
+    strip_prefix = "grpc-1.64.2",
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+grpc_extra_deps()
+
+
+http_archive(
     name = "com_google_googleapis",
     sha256 = "28e7fe3a640dd1f47622a4c263c40d5509c008cc20f97bd366076d5546cccb64",
     strip_prefix = "googleapis-4ce00b00904a7ce1df8c157e54fcbf96fda0dc49",
