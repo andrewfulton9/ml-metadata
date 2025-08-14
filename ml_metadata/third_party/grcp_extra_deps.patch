@@ -1,13 +1,13 @@
 diff --git a/bazel/grpc_extra_deps.bzl b/bazel/grpc_extra_deps.bzl
-index 4a8e18ce17..f7cd7aab4b 100644
+index 2ad8a69325..204e9f4bb4 100644
 --- a/bazel/grpc_extra_deps.bzl
 +++ b/bazel/grpc_extra_deps.bzl
-@@ -64,10 +64,6 @@ def grpc_extra_deps(ignore_version_differences = False):
+@@ -50,10 +50,6 @@ def grpc_extra_deps(ignore_version_differences = False):
  
      api_dependencies()
  
 -    go_rules_dependencies()
--    go_register_toolchains(version = "1.22.5")
+-    go_register_toolchains(version = "1.18")
 -    gazelle_dependencies()
 -
      # Pull-in the go 3rd party dependencies for protoc_gen_validate, which is
