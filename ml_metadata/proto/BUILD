@@ -46,7 +46,7 @@ ml_metadata_proto_library_py(
 py_grpc_library(
     name = "metadata_store_service_pb2_grpc",
     srcs = ["metadata_store_service.proto"],
-    deps = [":metadata_store_service_py_pb2"],W
+    deps = [":metadata_store_service_py_pb2"],
 )
 
 ml_metadata_proto_library_go(
