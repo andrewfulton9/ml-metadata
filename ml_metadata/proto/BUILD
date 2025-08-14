@@ -13,7 +13,7 @@
 # limitations under the License.
 
 load("//ml_metadata:ml_metadata.bzl", "ml_metadata_proto_library", "ml_metadata_proto_library_go", "ml_metadata_proto_library_py")
-load("@rules_proto_grpc//:defs.bzl", "proto_library", "py_grpc_library")
+load("@rules_proto_grpc//:defs.bzl", "py_grpc_library")
 
 package(default_visibility = ["//visibility:public"])
 
