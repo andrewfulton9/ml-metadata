@@ -13,7 +13,7 @@
 # limitations under the License.
 
 load("//ml_metadata:ml_metadata.bzl", "ml_metadata_proto_library", "ml_metadata_proto_library_go", "ml_metadata_proto_library_py")
-load("@rules_proto_grpc//:defs.bzl", "py_grpc_library")
+load("@com_github_grpc_grpc//bazel:python_rules.bzl", "py_grpc_library")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -46,6 +46,7 @@ ml_metadata_proto_library_py(
 py_grpc_library(
     name = "metadata_store_service_pb2_grpc",
     srcs = ["metadata_store_service.proto"],
+    deps = [":metadata_store_service_py_pb2"],W
 )
 
 ml_metadata_proto_library_go(

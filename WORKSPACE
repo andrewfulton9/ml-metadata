@@ -176,11 +176,18 @@ local_python_configure(name = "local_config_python")
 ################################################################################
 # Google APIs protos                                                           #
 ################################################################################
+_grpc_version = "1.60.0"
+
+_grpc_sha256 = "09640607a340ff0d97407ed22fe4adb177e5bb85329821122084359cd57c3dea"
+
 http_archive(
     name = "com_github_grpc_grpc",
-    urls = ["https://github.com/grpc/grpc/archive/refs/tags/v1.64.2.tar.gz"],
-    sha256 = "c682fc39baefc6e804d735e6b48141157b7213602cc66dbe0bf375b904d8b5f9",
-    strip_prefix = "grpc-1.64.2",
+    sha256 = _grpc_sha256,
+    strip_prefix = "grpc-%s" % _grpc_version,
+    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % _grpc_version],
+    patches = ["//ml_metadata/third_party:grpc_extra_deps.patch"],
+    patch_args = ["-p1"]
+
 )
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
@@ -224,7 +231,7 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains()
+go_register_toolchains(version = "1.21.11")
 
 _bazel_gazelle_version = "0.36.0"
 
