@@ -176,25 +176,6 @@ local_python_configure(name = "local_config_python")
 ################################################################################
 # Google APIs protos                                                           #
 ################################################################################
-_grpc_version = "1.60.0"
-
-_grpc_sha256 = "09640607a340ff0d97407ed22fe4adb177e5bb85329821122084359cd57c3dea"
-
-http_archive(
-    name = "com_github_grpc_grpc",
-    sha256 = _grpc_sha256,
-    strip_prefix = "grpc-%s" % _grpc_version,
-    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % _grpc_version],
-    patches = ["//ml_metadata/third_party:grpc_extra_deps.patch"],
-    patch_args = ["-p1"]
-
-)
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-grpc_deps()
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-grpc_extra_deps()
-
 
 http_archive(
     name = "com_google_googleapis",
@@ -232,6 +213,19 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 go_rules_dependencies()
 
 go_register_toolchains(version = "1.21.11")
+
+
+
+
+# http_archive(
+#     name = "com_googlesource_code_re2",
+#     sha256 = "1ae8ccfdb1066a731bba6ee0881baad5efd2cd661acd9569b689f2586e1a50e9",
+#     strip_prefix = "re2-2022-04-01",
+#     urls = [
+#         "https://storage.googleapis.com/grpc-bazel-mirror/github.com/google/re2/archive/2022-04-01.tar.gz",
+#         "https://github.com/google/re2/archive/2022-04-01.tar.gz",
+#     ],
+# )
 
 _bazel_gazelle_version = "0.36.0"
 
@@ -287,6 +281,37 @@ zetasql_deps_step_2(
 # load("@com_google_zetasql//bazel:zetasql_deps_step_4.bzl", "zetasql_deps_step_4")
 
 # zetasql_deps_step_4()
+
+
+_grpc_version = "1.60.0"
+
+_grpc_sha256 = "09640607a340ff0d97407ed22fe4adb177e5bb85329821122084359cd57c3dea"
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    sha256 = _grpc_sha256,
+    strip_prefix = "grpc-%s" % _grpc_version,
+    urls = ["https://github.com/grpc/grpc/archive/v%s.zip" % _grpc_version],
+    patches = ["//ml_metadata/third_party:grpc_extra_deps.patch",],
+    patch_args = ["-p1"],
+
+)
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+grpc_extra_deps()
+
+http_archive(
+                name = "com_googlesource_code_re2",
+                urls = [
+                    "https://github.com/google/re2/archive/03da4fc0857c285e3a26782f6bc8931c4c950df4.tar.gz",
+                ],
+                sha256 = "ef516fb84824a597c4d5d0d6d330daedb18363b5a99eda87d027e6bdd9cba299",
+                strip_prefix = "re2-03da4fc0857c285e3a26782f6bc8931c4c950df4",
+            )
+
+
 
 
 # Specify the minimum required bazel version.
