@@ -110,9 +110,6 @@ class _BazelBuildCommand(setuptools.Command):
          '--compilation_mode', 'opt',
          '--define', 'grpc_no_ares=true',
          '--verbose_failures',
-         '--discard_analysis_cache',
-         '--worker_max_instances=1',
-         '--notrack_incremental_state',
          *self._additional_build_options,
          '//ml_metadata:move_generated_files'],
         # Bazel should be invoked in a directory containing bazel WORKSPACE
